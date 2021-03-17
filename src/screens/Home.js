@@ -1,5 +1,6 @@
 import React from "react";
-import {StyleSheet,Text,View,FlatList,Button} from "react-native";
+import {StyleSheet,Text,View,FlatList,TouchableOpacity} from "react-native";
+import { IconButton, Colors } from 'react-native-paper';
 import HomeList from "../components/homeList";
 
 export default class Home extends React.Component {
@@ -15,12 +16,9 @@ export default class Home extends React.Component {
             <View style={styles.divider} />
           </View>
           <View style={{ marginVertical: 10, justifyContent: 'center', alignItems: 'center'}}>
-            <Button
-              title= "Add Task"
-              color="#046582"
-              onPress={() => 
-                this.props.navigation.navigate('AddTask')}
-              />
+            <TouchableOpacity style = {add} onPress = {() => this.props.navigation.navigate('AddTask')}>
+              
+            </TouchableOpacity>
           </View>
           <View style={{ height: 500 }}>
             <Text style={styles.addText}> Choses à faire :</Text>
