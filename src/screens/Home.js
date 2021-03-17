@@ -1,6 +1,6 @@
 import React from "react";
 import {StyleSheet,Text,View,FlatList,TouchableOpacity} from "react-native";
-import { IconButton, Colors } from 'react-native-paper';
+import Icon from 'react-native-vector-icons/FontAwesome5';
 import HomeList from "../components/homeList";
 
 export default class Home extends React.Component {
@@ -16,8 +16,8 @@ export default class Home extends React.Component {
             <View style={styles.divider} />
           </View>
           <View style={{ marginVertical: 10, justifyContent: 'center', alignItems: 'center'}}>
-            <TouchableOpacity style = {add} onPress = {() => this.props.navigation.navigate('AddTask')}>
-              
+            <TouchableOpacity style = {styles.add} onPress = {() => this.props.navigation.navigate('AddTask')}>
+              <Icon name="rocket" size={30} color="#900" />
             </TouchableOpacity>
           </View>
           <View style={{ height: 500 }}>
