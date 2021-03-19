@@ -2,6 +2,14 @@ import React from 'react';
 import { StyleSheet, Text, View, Button , KeyboardAvoidingView, TouchableOpacity,TextInput} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 class AddTask extends React.Component {
+  availableColors = ["#f39189","#bb8082","#6e7582","#046582"]
+  state = {title : "", color : this.availableColors[0]}
+
+  chooseColor(){
+    return this.availableColors.map(c => {
+      return <TouchableOpacity key={c} style={[styles.color, {backgroundColor:c}]} onPress={() => this.setState({color : c})}/>
+    })
+  }
   render() {
     return (
       <KeyboardAvoidingView style ={styles.container} behavior= "padding">
@@ -10,7 +18,11 @@ class AddTask extends React.Component {
         </TouchableOpacity>
         <View style = {{alignSelf: "center"}}>
           <Text style = {styles.title}>Add new task</Text>
-          <TextInput style = {styles.input} placeholder = "Name"/>
+          <TextInput style = {styles.input} placeholder = "Name :" onChangeText={()=> this.setState({title: text})}/>
+          <View style = {{flexDirection : "row", justifyContent : "space-evenly"}}>{this.chooseColor()}</View>
+          <TouchableOpacity style = { styles.addButton,{backgroundColor: this.state.color}}>
+            <Text style = {{color : "#fff", fontWeight: "500"}}> Add</Text>
+          </TouchableOpacity>
         </View>
       </KeyboardAvoidingView>
     );
@@ -39,7 +51,21 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     paddingVertical :10,
     fontSize: 13
+  },
+  color : {
+    width : 25,
+    height : 25, 
+    borderRadius :4,
+    marginVertical: 10
+  },
+  addButton : {
+    height :70, 
+    marginTop : 20, 
+    borderRadius : 8, 
+    alignItems : "center", 
+    justifyContent : "center",
   }
+
 });
 
 export default AddTask;
