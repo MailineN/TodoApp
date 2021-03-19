@@ -2,6 +2,7 @@ import React from "react";
 import {StyleSheet,Text,View,FlatList,TouchableOpacity} from "react-native";
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import HomeList from "../components/homeList";
+// import Data from "../data.js";
 
 export default class Home extends React.Component {
   
@@ -17,14 +18,14 @@ export default class Home extends React.Component {
           </View>
           <View style={{ marginVertical: 10, justifyContent: 'center', alignItems: 'center'}}>
             <TouchableOpacity style = {styles.add} onPress = {() => this.props.navigation.navigate('AddTask')}>
-              <Icon name="rocket" size={30} color="#900" />
+              <Icon name="dragon" size={25} color="#046582" />
             </TouchableOpacity>
           </View>
           <View style={{ height: 500 }}>
             <Text style={styles.addText}> Choses à faire :</Text>
             <View style={{ marginVertical: 10 }}></View>
             <FlatList
-              data={data}
+              data={Data}
               keyExtractor={(item) => item.text}
               renderItem={({ item }) => <HomeList item={item} />}
               showsVerticalScrollIndicator={false}
@@ -68,7 +69,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const data = [
+const Data = [
   {
     id: 1,
     color: "#f39189",
@@ -144,4 +145,4 @@ const data = [
       },
     ],
   },
-];
+]; 
