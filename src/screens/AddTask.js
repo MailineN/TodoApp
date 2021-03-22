@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, Button , KeyboardAvoidingView, TouchableOpacity,TextInput} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
+import {Data} from '../data'
 class AddTask extends React.Component {
   availableColors = ["#f39189","#bb8082","#6e7582","#046582"]
   state = {title : "", color : this.availableColors[0]}
@@ -10,6 +11,18 @@ class AddTask extends React.Component {
       return <TouchableOpacity key={c} style={[styles.color, {backgroundColor:c}]} onPress={() => this.setState({color : c})}/>
     })
   }
+  createTodo = () => {
+    const {title,color} = this.state
+    Data.push({
+      text : title, 
+      color,
+      subtask : []
+    }); 
+
+    this.setState({title : ""}); 
+    this.props.navigation.navigate('Home')
+    
+  }
   render() {
     return (
       <KeyboardAvoidingView style ={styles.container} behavior= "padding">
@@ -18,9 +31,9 @@ class AddTask extends React.Component {
         </TouchableOpacity>
         <View style = {{alignSelf: "center"}}>
           <Text style = {styles.title}>Add new task</Text>
-          <TextInput style = {styles.input} placeholder = "Name :" onChangeText={()=> this.setState({title: text})}/>
+          <TextInput style = {styles.input} placeholder = "Name :" onChangeText={(text)=> this.setState({title: text})}/>
           <View style = {{flexDirection : "row", justifyContent : "space-evenly"}}>{this.chooseColor()}</View>
-          <TouchableOpacity style = { styles.addButton,{backgroundColor: this.state.color}}>
+          <TouchableOpacity style = { styles.addButton,{backgroundColor: this.state.color}} onPress = {this.createTodo}>
             <Text style = {{color : "#fff", fontWeight: "500"}}> Add</Text>
           </TouchableOpacity>
         </View>
