@@ -1,11 +1,14 @@
 import React from 'react';
 import { StyleSheet, Text, View, Button , KeyboardAvoidingView, TouchableOpacity,TextInput} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
+import firestore from '@react-native-firebase/firestore';
+
 import {Data} from '../data'
 class AddTask extends React.Component {
   availableColors = ["#f39189","#bb8082","#6e7582","#046582"]
   state = {title : "", color : this.availableColors[0]}
-
+  ref = firestore().collection('Task')
+  
   chooseColor(){
     return this.availableColors.map(c => {
       return <TouchableOpacity key={c} style={[styles.color, {backgroundColor:c}]} onPress={() => this.setState({color : c})}/>
@@ -13,11 +16,11 @@ class AddTask extends React.Component {
   }
   createTodo = () => {
     const {title,color} = this.state
-    Data.push({
-      text : title, 
-      color,
-      subtask : []
-    }); 
+    this.ref.add({
+      color : color, 
+      title : title, 
+      completed : false,
+    })
 
     this.setState({title : ""}); 
     this.props.navigation.navigate('Home')
@@ -72,9 +75,11 @@ const styles = StyleSheet.create({
     marginVertical: 10
   },
   addButton : {
-    height :70, 
+    height :100, 
     marginTop : 20, 
     borderRadius : 8, 
+    paddingHorizontal: 10,
+    paddingVertical :10,
     alignItems : "center", 
     justifyContent : "center",
   }

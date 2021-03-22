@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "726101240692",
+    "project_id": "todoreact-204ac",
+    "storage_bucket": "todoreact-204ac.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:726101240692:android:2047b13a661d2e07591a21",
+        "android_client_info": {
+          "package_name": "com.todoapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "726101240692-pfouh7gn07fnoi6rhfaleug38gu3ep8m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBTGgOe2E2tqL4JKGONOsqJmH_vVzagaRU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "726101240692-pfouh7gn07fnoi6rhfaleug38gu3ep8m.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

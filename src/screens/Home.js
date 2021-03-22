@@ -2,10 +2,28 @@ import React from "react";
 import {StyleSheet,Text,View,FlatList,TouchableOpacity} from "react-native";
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import HomeList from "../components/homeList";
+import firestore from '@react-native-firebase/firestore';
 import {Data} from '../data'
 
 export default class Home extends React.Component {
   
+  ref = firestore().collection('Task');
+
+  useEffect = () => {
+    this.ref.onSnapshot(function (querySnapshot){
+      const task = []
+      querySnapshot.forEach(doc => {
+        task.push({
+          color : doc.data().color,
+          title : doc.data().title,
+          completed : doc.data.completed,
+        }); 
+        listTask(task)
+      }
+      )
+    return task;
+    });
+  }
   render() {
     return (
       <View style={styles.container}>
